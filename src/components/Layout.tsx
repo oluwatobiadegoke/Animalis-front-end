@@ -1,6 +1,9 @@
+import Navbar from "./Navbar";
+
 const Layout: React.FC = ({ children }) => {
   return (
-    <main className="bg-gradient-to-tr from-black via-teal-800 to-yellow-800 min-h-screen w-full">
+    <main className="font-pri px-16 bg-gradient-to-tr from-[rgb(15,23,42)] via-[rgb(23,49,77)] to-teal-800 min-h-screen w-full">
+      <Navbar />
       {children}
     </main>
   );

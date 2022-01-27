@@ -1,3 +1,5 @@
+import About from "../pages/about";
+import Contact from "../pages/contact";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import Posts from "../pages/posts";
@@ -8,6 +10,8 @@ import { RouterProps } from "../interfaces/router";
 
 export const routes = {
   home: "/",
+  about: "/about",
+  contact: "/contact",
   login: "/login",
   register: "/register",
   posts: "/posts",
@@ -19,6 +23,14 @@ export const router: RouterProps[] = [
   {
     path: routes.home,
     element: <Home />,
+  },
+  {
+    path: routes.about,
+    element: <About />,
+  },
+  {
+    path: routes.contact,
+    element: <Contact />,
   },
   {
     path: routes.login,
