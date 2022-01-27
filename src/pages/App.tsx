@@ -1,5 +1,11 @@
+import { useRoutes } from "react-router-dom";
+
+import { router } from "../utils/routes";
+
 function App() {
-  return <div className="App"></div>;
+  let routes = useRoutes(router);
+
+  return <div className="App">{routes}</div>;
 }
 
 export default App;
