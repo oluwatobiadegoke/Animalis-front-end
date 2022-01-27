@@ -1,4 +1,9 @@
-import { Link, useLocation, matchRoutes } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  matchRoutes,
+  useResolvedPath,
+} from "react-router-dom";
 
 import { router } from "../utils/routes";
 
@@ -20,15 +25,16 @@ const NavLink = ({
   inactiveClassName,
 }: LinkProps) => {
   const location = useLocation();
+  const resolvedPath = useResolvedPath(to);
 
   let isActive;
 
   const match = matchRoutes(router, location);
 
   if (exact) {
-    isActive = location.pathname === to;
+    isActive = location.pathname === resolvedPath.pathname;
   } else {
-    isActive = match?.some((match) => match.pathname === to);
+    isActive = match?.some((match) => match.pathname === resolvedPath.pathname);
   }
 
   let classNames = `${className} ${
