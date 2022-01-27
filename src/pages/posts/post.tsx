@@ -1,5 +1,11 @@
+import Layout from "../../components/Layout";
+
 const Post = () => {
-  return <div>Single Post</div>;
+  return (
+    <Layout>
+      <main className="text-gray-200 px-16">Post page</main>
+    </Layout>
+  );
 };
 
 export default Post;
