@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 const Home = () => {
   return (
     <Layout>
-      <div className="text-gray-200">Home is where I belong.</div>
+      <main className="text-gray-200 px-16">Home is where I belong.</main>
     </Layout>
   );
 };

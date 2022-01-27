@@ -9,3 +9,12 @@ export interface IBtnProps {
   height?: string;
   fontSize?: string;
 }
+
+export interface LinkProps {
+  to: string;
+  exact?: boolean;
+  children: React.ReactNode;
+  className: string;
+  activeClassName?: string;
+  inactiveClassName?: string;
+}

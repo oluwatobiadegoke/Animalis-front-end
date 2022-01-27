@@ -6,15 +6,7 @@ import {
 } from "react-router-dom";
 
 import { router } from "../utils/routes";
-
-type LinkProps = {
-  to: string;
-  exact?: boolean;
-  children: React.ReactNode;
-  className: string;
-  activeClassName?: string;
-  inactiveClassName?: string;
-};
+import { LinkProps } from "../interfaces";
 
 const NavLink = ({
   to,

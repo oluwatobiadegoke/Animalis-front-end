@@ -6,7 +6,7 @@ import NavLink from "./NavLink";
 
 const Navbar = () => {
   return (
-    <nav className="py-6 flex items-center">
+    <nav className="py-6 px-16 flex items-center">
       <Link
         to={routes.home}
         className="text-textWhite-500 text-2xl uppercase mr-24 font-semibold"
