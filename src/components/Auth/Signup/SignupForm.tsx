@@ -33,7 +33,10 @@ const SignupForm = () => {
           />
         </div>
         <div className="flex justify-center mt-5">
-          <Button width="w-28" className="font-semibold">
+          <Button
+            width="w-28"
+            className="font-semibold transition-all duration-500"
+          >
             Register
           </Button>
         </div>

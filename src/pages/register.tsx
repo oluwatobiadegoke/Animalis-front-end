@@ -8,7 +8,7 @@ const Register = () => {
   return (
     <main className="font-pri bg-gradient-to-tr from-[rgb(15,23,42)] via-[rgb(23,49,77)] to-teal-800 min-h-screen overflow-y-auto w-full text-textWhite-500">
       <Link to={routes.home}>
-        <AiFillHome className="ml-3 mt-5 text-2xl" />
+        <AiFillHome className="ml-3 mt-5 text-2xl hover:text-textGrey-500 transition-all duration-500" />
       </Link>
       <section className="max-w-3xl mx-auto w-full pt-6">
         <div className="text-center font-bold mb-6">

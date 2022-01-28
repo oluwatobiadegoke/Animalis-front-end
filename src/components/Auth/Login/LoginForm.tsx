@@ -23,7 +23,10 @@ const LoginForm = () => {
           <MyInputArea label="Password" name="password" type="password" />
         </div>
         <div className="flex justify-center mt-5">
-          <Button width="w-28" className="font-semibold">
+          <Button
+            width="w-28"
+            className="font-semibold transition-all duration-500"
+          >
             Login
           </Button>
         </div>
