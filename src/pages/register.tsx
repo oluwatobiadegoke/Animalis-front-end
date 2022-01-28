@@ -14,7 +14,7 @@ const Register = () => {
         <div className="text-center font-bold mb-6">
           <h1 className="text-2xl md:text-4xl lg:text-5xl ">Welcome to</h1>
           <h1 className="text-green-500 text-4xl md:text-7xl lg:text-7xl mb-4">
-            Animal.Kg
+            Animal.Kgdm
           </h1>
           <p className="text-xs">Kindly type in your details to register</p>
         </div>

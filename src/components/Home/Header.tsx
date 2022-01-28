@@ -9,7 +9,7 @@ const Header = () => {
         <div className="text-2xl md:text-4xl lg:text-5xl font-bold leading-snug mb-6">
           <h1>Discover and connect with</h1>
           <h1>fellow pet lovers here at</h1>
-          <h1 className="text-green-500">Animal.Is</h1>
+          <h1 className="text-green-500">Animal.Kgdm</h1>
         </div>
         <Button link={routes.register} width="w-28" className="font-semibold">
           Register

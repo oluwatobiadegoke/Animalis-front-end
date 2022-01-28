@@ -16,7 +16,7 @@ const Navbar = () => {
           to={routes.home}
           className="text-textWhite-500 text-2xl uppercase md:mr-24 font-semibold"
         >
-          Animal.is
+          Animal.Kgdm
         </Link>
 
         <button
