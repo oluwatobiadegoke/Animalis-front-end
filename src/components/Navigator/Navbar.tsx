@@ -1,32 +1,37 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { navLinks } from "../../utils/navLinks";
-import NavLink from "../NavLink";
+import { HiX, HiMenuAlt4 } from "react-icons/hi";
+
 import { routes } from "../../utils/routes";
-import Button from "../Button";
-import NavgatorLinks from "./NavgatorLinks";
+import LgScreenNav from "./LgScreenNav";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav className="py-6 px-16 flex items-center">
-      <Link
-        to={routes.home}
-        className="text-textWhite-500 text-2xl uppercase mr-24 font-semibold"
-      >
-        Animal.is
-      </Link>
-      <NavgatorLinks />
-      <div className="flex-1 flex items-center justify-end gap-4">
-        <Button
-          link={routes.login}
-          type="secondary"
-          width="w-24"
-          className="font-semibold"
+    <nav className="fixed top-0 left-0 right-0 lg:bg-none lg:bg-opacity-0 bg-[rgb(15,23,42)] bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10">
+      <div className="relative h-24 flex items-center justify-between md:justify-start  max-w-7xl mx-auto w-full px-3 xl:px-0">
+        <Link
+          to={routes.home}
+          className="text-textWhite-500 text-2xl uppercase md:mr-24 font-semibold"
         >
-          Login
-        </Button>
-        <Button link={routes.register} width="w-24" className="font-semibold">
-          Register
-        </Button>
+          Animal.is
+        </Link>
+
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex md:hidden items-center justify-center text-textWhite-500"
+        >
+          {!isOpen ? (
+            <HiMenuAlt4 className="text-2xl" />
+          ) : (
+            <HiX className="text-2xl" />
+          )}
+        </button>
+
+        <LgScreenNav />
+        <MobileNav />
       </div>
     </nav>
   );

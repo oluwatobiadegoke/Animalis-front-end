@@ -2,6 +2,7 @@ import About from "../pages/about";
 import Contact from "../pages/contact";
 import Home from "../pages/home";
 import Login from "../pages/login";
+import Market from "../pages/Market";
 import Posts from "../pages/posts";
 import Post from "../pages/posts/post";
 import Profile from "../pages/profile";
@@ -14,6 +15,7 @@ export const routes = {
   contact: "/contact",
   login: "/login",
   register: "/register",
+  marketplace: "/marketplace",
   posts: "/posts",
   post: "/posts/:id",
   profile: "/profile",
@@ -39,6 +41,10 @@ export const router: RouterProps[] = [
   {
     path: routes.register,
     element: <Register />,
+  },
+  {
+    path: routes.marketplace,
+    element: <Market />,
   },
   {
     path: routes.posts,
