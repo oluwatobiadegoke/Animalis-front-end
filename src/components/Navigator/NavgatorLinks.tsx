@@ -4,7 +4,7 @@ import CustomLink from "../NavLink";
 
 const NavgatorLinks = () => {
   return (
-    <div className="flex-1 flex items-center gap-8">
+    <div className="flex-1 flex flex-col md:flex-row items-center gap-8">
       <CustomLink
         to={routes.home}
         className="text-textWhite-500 font-semibold transition duration-500"

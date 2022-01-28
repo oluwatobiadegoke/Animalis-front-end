@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HiX, HiMenuAlt4 } from "react-icons/hi";
 
@@ -31,7 +31,7 @@ const Navbar = () => {
         </button>
 
         <LgScreenNav />
-        <MobileNav />
+        <MobileNav isOpen={isOpen} />
       </div>
     </nav>
   );
