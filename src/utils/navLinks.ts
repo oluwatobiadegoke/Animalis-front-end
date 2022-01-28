@@ -1,10 +1,10 @@
 import { routes } from "./routes";
 
-type LinkProps = {
+interface LinkProps {
   id: number;
   name: string;
   path: string;
-};
+}
 
 export const navLinks: LinkProps[] = [
   {

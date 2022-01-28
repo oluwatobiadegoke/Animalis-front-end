@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+import Navbar from "./Navigator/Navbar";
 
 const Layout: React.FC = ({ children }) => {
   return (
