@@ -3,8 +3,6 @@ import Header from "../components/Home/Header";
 import Welcome from "../components/Home/Welcome";
 import Steps from "../components/Home/Steps";
 
-// AiOutlineHome;
-
 const Home = () => {
   return (
     <Layout>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const Steps = () => {
   return (
     <div className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 my-16">
