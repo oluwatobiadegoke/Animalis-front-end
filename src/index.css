@@ -3,3 +3,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dog {
+  @apply relative w-full h-[468px] md:h-[70vh] mt-8 lg:mt-0 flex items-end justify-center  bg-[rgb(15,23,42)] bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10 rounded-t-[1000px] rounded-bl-full rounded-br-[1000px];
+}
+
+.dogRel {
+  @apply absolute h-16 w-16 flex items-center justify-center overflow-hidden  rounded-full border-4;
+}
+
+.diffDogRel {
+  @apply absolute h-12 w-12 flex items-center justify-center overflow-hidden  rounded-full border-4;
+}
+
+.steps {
+  @apply md:max-w-xs w-full py-8 px-10 rounded-xl bg-opacity-70;
+}
+
+.steps > h3 {
+  @apply text-[rgb(15,23,42)] text-2xl font-semibold mb-3;
+}

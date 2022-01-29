@@ -16,7 +16,7 @@ const Button: React.FC<IBtnProps> = ({
     return (
       <Link
         to={link}
-        className={`flex items-center justify-center border border-textWhite-500 transition duration-500 ${className} ${
+        className={`flex items-center justify-center border border-textWhite-500 transition duration-500 rounded-full ${className} ${
           type === "primary"
             ? "bg-textWhite-500 text-deepBlue-500 hover:bg-transparent hover:text-textWhite-500 "
             : "bg-transparent text-textWhite-500 hover:bg-textWhite-500 hover:text-deepBlue-500 "
@@ -31,7 +31,7 @@ const Button: React.FC<IBtnProps> = ({
 
   return (
     <button
-      className={`outline-none flex items-center justify-center border border-textWhite-500 ${className} ${
+      className={`outline-none flex items-center justify-center border border-textWhite-500 rounded-full ${className} ${
         type === "primary"
           ? "bg-textWhite-500 text-deepBlue-500 border-textWhite-500 hover:bg-transparent hover:text-textWhite-500"
           : "bg-transparent text-textWhite-500 hover:bg-textWhite-500 hover:text-deepBlue-500"
