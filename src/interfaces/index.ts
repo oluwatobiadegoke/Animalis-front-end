@@ -18,3 +18,14 @@ export interface LinkProps {
   activeClassName?: string;
   inactiveClassName?: string;
 }
+
+export interface IInputProps {
+  label: string;
+  name: string;
+  type?: string;
+}
+
+export interface formValues {
+  password: string;
+  email: string;
+}

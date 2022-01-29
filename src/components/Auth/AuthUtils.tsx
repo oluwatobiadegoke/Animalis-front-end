@@ -1,20 +1,9 @@
 import { useField } from "formik";
 import * as Yup from "yup";
 
-interface IInputProps {
-  label: string;
-  name: string;
-  type?: string;
-}
-
-interface formValues {
-  password: string;
-  email: string;
-}
-interface SignUpFormValues {
+import { IInputProps, formValues } from "../../interfaces";
+interface SignUpFormValues extends formValues {
   fullname: string;
-  email: string;
-  password: string;
   cpassword: string;
 }
 
