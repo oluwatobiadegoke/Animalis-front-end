@@ -33,7 +33,6 @@ const useScrolling = () => {
       }
     };
     window.addEventListener("scroll", onScroll);
-    console.log(isScrolling);
 
     return () => window.removeEventListener("scroll", onScroll);
   }, [isScrolling]);
