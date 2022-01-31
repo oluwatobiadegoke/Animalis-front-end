@@ -29,3 +29,29 @@ export interface formValues {
   password: string;
   email: string;
 }
+
+export type Media = {
+  link: string;
+  type: string;
+};
+
+type Comments = {
+  userId: string;
+  username: string;
+  userAvatar: string;
+  text: string;
+  date: Date;
+};
+
+export interface PostProps {
+  postId: string;
+  userId: string;
+  username: string;
+  userAvatar: string;
+  words: string;
+  media: Media[];
+  likes: string[];
+  comments: Comments[];
+  createdAt: Date;
+  updatedAt: Date;
+}
