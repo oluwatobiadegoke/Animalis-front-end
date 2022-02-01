@@ -8,6 +8,7 @@ import Post from "../pages/posts/post";
 import Profile from "../pages/profile";
 import Register from "../pages/register";
 import { RouterProps } from "../interfaces/router";
+import SinglePost from "../pages/posts/singlePost";
 
 export const routes = {
   home: "/",
@@ -17,7 +18,7 @@ export const routes = {
   register: "/register",
   marketplace: "/marketplace",
   posts: "/posts",
-  post: "/posts/:id",
+  post: "/post",
   profile: "/profile",
 };
 
@@ -53,6 +54,12 @@ export const router: RouterProps[] = [
   {
     path: routes.post,
     element: <Post />,
+    children: [
+      {
+        path: ":postId",
+        element: <SinglePost />,
+      },
+    ],
   },
   {
     path: routes.profile,

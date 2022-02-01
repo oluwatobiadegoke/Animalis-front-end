@@ -35,7 +35,7 @@ export type Media = {
   type: string;
 };
 
-type Comments = {
+export type Comments = {
   userId: string;
   username: string;
   userAvatar: string;
