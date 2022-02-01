@@ -5,6 +5,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 import { PostProps } from "../../interfaces";
 import { Media } from "../../interfaces";
+import { routes } from "../../utils/routes";
 
 export type IProps = {
   post: PostProps;
@@ -26,7 +27,7 @@ const Post: React.FC<PostPageProps> = ({
   return (
     <div className="relative block text-sm md:text-base pt-3 px-3 rounded-lg hover:bg-[rgb(23,49,77)] transition-all duration-500">
       {/* CLICKING THE IMAGE LEADS TO A PROFILE PAGE. IT IS MADE ABSOLUTE JUST SO THAT THE LINK APPLIES ONLY TO WHEN THE IMAGE ALONE IS CLICKED */}
-      <Link to={`profile/${userId}`}>
+      <Link to={`${routes.profile}/${userId}`}>
         <img
           className="absolute top-3 left-3 inline object-cover w-16 h-16 mr-2 rounded-full"
           src={
