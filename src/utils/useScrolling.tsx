@@ -6,7 +6,7 @@ const useScrolling = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsScrolling(false);
-    }, 3000);
+    }, 5000);
   }, [isScrolling]);
 
   useEffect(() => {
