@@ -3,27 +3,21 @@ import { Dialog, Transition } from "@headlessui/react";
 import SwiperCore, { Keyboard } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AiOutlineClose } from "react-icons/ai";
+import { useAppSelector, useAppDispatch } from "../app/redux/hooks";
+import { closeModal } from "../app/redux/slices/modal";
 
 import "swiper/css";
-import { Media } from "../interfaces";
-
-type ModalProps = {
-  isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
-  imgs: Media[];
-  displayIndex: number;
-};
 
 SwiperCore.use([Keyboard]);
 
-export default function Modal({
-  isOpen,
-  setIsOpen,
-  imgs,
-  displayIndex,
-}: ModalProps): JSX.Element {
-  function closeModal() {
-    setIsOpen(false);
+export default function Modal() {
+  const dispatch = useAppDispatch();
+  const { modalImgs, isOpen, displayIndex } = useAppSelector(
+    (state) => state.modal
+  );
+
+  function removeModal() {
+    dispatch(closeModal());
   }
 
   return (
@@ -32,7 +26,7 @@ export default function Modal({
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto bg-[rgb(23,49,77)] bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-10"
-          onClose={closeModal}
+          onClose={() => removeModal()}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -67,7 +61,7 @@ export default function Modal({
                 {/* THIS IS WHERE THE IMAGE APPEARS */}
                 <div
                   className="flex justify-end mb-4 mr-2"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => removeModal()}
                 >
                   <AiOutlineClose className="text-textGrey-500 text-xl cursor-pointer hover:text-red-500 transition-all" />
                 </div>
@@ -84,7 +78,7 @@ export default function Modal({
                   preventClicks={true}
                   keyboard={{ enabled: true }}
                 >
-                  {imgs.map((img, index) => (
+                  {modalImgs.map((img, index) => (
                     <SwiperSlide key={index}>
                       <img src={img.link} alt={img.type} />
                     </SwiperSlide>

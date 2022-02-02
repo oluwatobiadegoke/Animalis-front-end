@@ -4,23 +4,21 @@ import { FaComment } from "react-icons/fa";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 import { PostProps } from "../../interfaces";
-import { Media } from "../../interfaces";
 import { routes } from "../../utils/routes";
+import { useAppDispatch } from "../../app/redux/hooks";
+import { openModal } from "../../app/redux/slices/modal";
 
 export type IProps = {
   post: PostProps;
-  setDisplayIndex: (value: number) => void;
-  setModalImgs: (value: Media[]) => void;
-  setIsOpen: (value: boolean) => void;
 };
 
 type PostPageProps = {
   postPage: IProps;
 };
 
-const Post: React.FC<PostPageProps> = ({
-  postPage: { post, setDisplayIndex, setModalImgs, setIsOpen },
-}) => {
+const Post: React.FC<PostPageProps> = ({ postPage: { post } }) => {
+  const dispatch = useAppDispatch();
+
   const [userId] = useState("1");
   const location = useLocation();
 
@@ -52,9 +50,9 @@ const Post: React.FC<PostPageProps> = ({
                 post.media.length === 3 && index === 0 && "row-span-2"
               }`}
               onClick={() => {
-                setDisplayIndex(index);
-                setModalImgs(post.media);
-                setIsOpen(true);
+                dispatch(
+                  openModal({ modalImgs: post.media, displayIndex: index })
+                );
               }}
             >
               <img

@@ -15,6 +15,7 @@ import localForage from "localforage";
 import logger from "redux-logger";
 
 import { authSlice } from "./slices/auth";
+import { modalSlice } from "./slices/modal";
 
 const persistConfig = {
   key: "root",
@@ -24,6 +25,7 @@ const persistConfig = {
 
 const combinedReducers = combineReducers({
   auth: authSlice.reducer,
+  modal: modalSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);

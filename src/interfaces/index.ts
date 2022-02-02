@@ -55,3 +55,11 @@ export interface PostProps {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface User {
+  userId: string;
+  username: string;
+  email: string;
+  avatar: string;
+  bio: string;
+}
