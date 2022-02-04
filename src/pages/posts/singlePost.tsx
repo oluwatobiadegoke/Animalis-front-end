@@ -23,7 +23,7 @@ const SinglePost = () => {
     <>
       <Modal />
       <Post postPage={PostProps} />
-      <div>
+      <div className="pb-16">
         {post.comments.map((comment) => (
           <Comment comment={comment} />
         ))}

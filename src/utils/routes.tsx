@@ -11,6 +11,7 @@ import { RouterProps } from "../interfaces/router";
 import SinglePost from "../pages/posts/singlePost";
 import UserProfile from "../pages/profile/userProfile";
 import EditProfile from "../pages/profile/edit";
+import Upload from "../pages/posts/upload";
 
 export const routes = {
   home: "/",
@@ -60,6 +61,10 @@ export const router: RouterProps[] = [
       {
         path: ":postId",
         element: <SinglePost />,
+      },
+      {
+        path: "upload",
+        element: <Upload />,
       },
     ],
   },

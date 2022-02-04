@@ -5,8 +5,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 import { PostProps } from "../../interfaces";
 import { routes } from "../../utils/routes";
-import { useAppDispatch } from "../../app/redux/hooks";
-import { openModal } from "../../app/redux/slices/modal";
+import PostImages from "./PostImages";
 
 export type IProps = {
   post: PostProps;
@@ -17,8 +16,6 @@ type PostPageProps = {
 };
 
 const Post: React.FC<PostPageProps> = ({ postPage: { post } }) => {
-  const dispatch = useAppDispatch();
-
   const [userId] = useState("1");
   const location = useLocation();
 
@@ -37,33 +34,8 @@ const Post: React.FC<PostPageProps> = ({ postPage: { post } }) => {
         />
       </Link>
       {/* CLICKING ANY OF THE IMAGES DISPLAYS A POP UP. THIS IS ALSO SEPARATED FROM THE GROUP SO THAT CLICKING IT WOULD NOT INITIATE THE LINK */}
-      <div
-        className={`absolute right-3 left-3 bottom-[41px] max-w-full h-64 md:h-72 mb-2 bg-transparent rounded-xl overflow-hidden grid gap-1 ${
-          post.media.length < 2 ? "grid-cols-1 " : " grid-cols-2"
-        }`}
-      >
-        {post.media.map((media, index) => {
-          return (
-            <div
-              key={index}
-              className={`h-full w-full overflow-hidden cursor-pointer ${
-                post.media.length === 3 && index === 0 && "row-span-2"
-              }`}
-              onClick={() => {
-                dispatch(
-                  openModal({ modalImgs: post.media, displayIndex: index })
-                );
-              }}
-            >
-              <img
-                className="w-full min-h-full object-cover"
-                src={media.link}
-                alt={media.type}
-              />
-            </div>
-          );
-        })}
-      </div>
+      <PostImages images={post.media} />
+      {/* ////////////////////////////// */}
       <Link to={`/post/${post.postId}`}>
         <div className="flex gap-2 mb-2 h-16">
           <div className="ml-[72px]">

@@ -78,7 +78,7 @@ export default function Modal() {
                   preventClicks={true}
                   keyboard={{ enabled: true }}
                 >
-                  {modalImgs.map((img, index) => (
+                  {modalImgs?.map((img, index) => (
                     <SwiperSlide key={index}>
                       <img src={img.link} alt={img.type} />
                     </SwiperSlide>

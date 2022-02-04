@@ -34,10 +34,10 @@ const EditProfile = () => {
 
   return (
     <div>
-      <form className="mb-8">
+      <form className="mb-8 flex items-center">
         <label
           htmlFor="avatar"
-          className=" text-sm rounded-full cursor-pointer"
+          className=" text-sm rounded-full cursor-pointer mx-auto"
         >
           <div className="editImg relative h-28 w-28 mx-auto rounded-full">
             <img
