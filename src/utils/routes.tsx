@@ -10,6 +10,7 @@ import Register from "../pages/register";
 import { RouterProps } from "../interfaces/router";
 import SinglePost from "../pages/posts/singlePost";
 import UserProfile from "../pages/profile/userProfile";
+import EditProfile from "../pages/profile/edit";
 
 export const routes = {
   home: "/",
@@ -69,6 +70,10 @@ export const router: RouterProps[] = [
       {
         path: ":userId",
         element: <UserProfile />,
+      },
+      {
+        path: "edit",
+        element: <EditProfile />,
       },
     ],
   },

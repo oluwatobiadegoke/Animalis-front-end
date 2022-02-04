@@ -4,7 +4,6 @@ import { BiMessageCheck } from "react-icons/bi";
 
 interface InputProps {
   name: string;
-  comment: string;
 }
 
 const MyInputArea = (props: InputProps) => {
@@ -34,7 +33,7 @@ const CommentInput = () => {
     >
       <Form className="h-14 flex items-center fixed bottom-0 left-0 right-0 z-20 py-3 bg-[rgb(23,49,77)]">
         <div className="h-10 text-sm xl:text-base w-full flex items-center px-3 border-b border-b-textGrey-500">
-          <MyInputArea name="comment" comment="comment" />
+          <MyInputArea name="comment" />
           <button type="submit">
             <BiMessageCheck className="text-textGrey-500 text-2xl ml-2" />
           </button>

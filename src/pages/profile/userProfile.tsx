@@ -9,13 +9,14 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { DemoPosts } from "../../utils/DemoPosts";
 import Modal from "../../utils/Modal";
+import { routes } from "../../utils/routes";
 
 const Posts = lazy(() => import("../../components/Posts/Posts"));
 
 const UserProfile = () => {
   const { userId } = useParams();
   const [user] = useState(demoUser.find((user) => user.userId === userId)!);
-  const [tabs] = useState<string[]>(["Posts", "Engagements", "Media"]);
+  const [tabs] = useState<string[]>(["Posts", "Media"]);
 
   return (
     <div className="text-textWhite-500">
@@ -28,9 +29,12 @@ const UserProfile = () => {
         />
         <div className="flex items-center gap-3">
           {userId === user.userId ? (
-            <button className="flex items-center border border-textWhite-500 text-sm px-4 py-2 rounded-full hover:text-deepBlue-500 hover:bg-white hover:border-white transition-all gap-2">
+            <Link
+              to={`${routes.profile}/edit`}
+              className="flex items-center border border-textWhite-500 text-sm px-4 py-2 rounded-full hover:text-deepBlue-500 hover:bg-white hover:border-white transition-all gap-2"
+            >
               <AiOutlineEdit className="text-2xl" /> <span>Edit Profile</span>
-            </button>
+            </Link>
           ) : (
             <>
               <Link to={`/user/${user.userId}`}>
@@ -86,8 +90,11 @@ const UserProfile = () => {
               <Posts DemoPosts={DemoPosts} />
             </Suspense>
           </Tab.Panel>
-          <Tab.Panel>Content 2</Tab.Panel>
-          <Tab.Panel>Content 3</Tab.Panel>
+          <Tab.Panel>
+            <Suspense fallback={null}>
+              <Posts DemoPosts={DemoPosts} />
+            </Suspense>
+          </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
     </div>
