@@ -12,10 +12,10 @@ interface Props {
 const ImageInput = ({ name, image, images, bg }: Props) => {
   return (
     <label
-      htmlFor="avatar"
-      className=" text-sm rounded-lg cursor-pointer shadow"
+      htmlFor={name}
+      className=" text-sm rounded-lg cursor-pointer shadow mx-auto border"
     >
-      <div className={`editImg relative h-16 w-16 rounded-lg ${bg}`}>
+      <div className={`editImg group relative h-16 w-16 rounded-lg ${bg}`}>
         {images.length > 0 ? (
           <img
             className="absolute inset-0 object-cover h-16 w-16 rounded-lg"
@@ -23,11 +23,11 @@ const ImageInput = ({ name, image, images, bg }: Props) => {
             alt={images[0].link}
           />
         ) : (
-          <div className="absolute inset-0 object-cover h-16 w-16 rounded-lg"></div>
+          <div className="inline absolute inset-0 object-cover h-16 w-16 rounded-lg"></div>
         )}
-        <div className="absolute inset-0 h-16 w-16 rounded-lg bg-black bg-opacity-80"></div>
+        <div className="absolute inset-0 h-16 w-16 rounded-lg bg-black bg-opacity-60 group-hover:bg-opacity-80 transition-all"></div>
         <MdOutlineAddAPhoto
-          className="absolute top-1/2 left-1/2 text-2xl"
+          className="absolute top-1/2 left-1/2 text-2xl text-textGrey-500 group-hover:text-textWhite-500 transition-all"
           style={{ transform: "translate(-50%, -50%)" }}
         />
       </div>

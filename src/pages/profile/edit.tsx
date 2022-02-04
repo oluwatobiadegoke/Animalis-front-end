@@ -45,10 +45,7 @@ const EditProfile = () => {
               src={user.avatar}
               alt={user.username}
             />
-            <div
-              className="absolute inset-0 h-28 w-28 rounded-full bg-black bg-opacity-60"
-              z-10
-            ></div>
+            <div className="absolute inset-0 h-28 w-28 rounded-full bg-black bg-opacity-60"></div>
             <MdCameraEnhance
               className="absolute top-1/2 left-1/2 text-2xl"
               style={{ transform: "translate(-50%, -50%)" }}
