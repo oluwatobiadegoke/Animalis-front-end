@@ -27,7 +27,7 @@ export interface IInputProps {
 
 export interface formValues {
   password: string;
-  email: string;
+  username: string;
 }
 
 export type Media = {

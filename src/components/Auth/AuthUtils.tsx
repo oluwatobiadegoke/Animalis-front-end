@@ -3,17 +3,17 @@ import * as Yup from "yup";
 
 import { IInputProps, formValues } from "../../interfaces";
 interface SignUpFormValues extends formValues {
-  fullname: string;
+  email: string;
   cpassword: string;
 }
 
 export const initialValues: formValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
 export const initialSignUpValues: SignUpFormValues = {
-  fullname: "",
+  username: "",
   email: "",
   password: "",
   cpassword: "",
@@ -24,12 +24,10 @@ export const formSchema = Yup.object().shape({
     .min(5, "Too Short!")
     .max(15, "Too Long!")
     .required("Password cannot be empty"),
-  email: Yup.string()
-    .email("Invalid email address")
-    .required("Email cannot be empty."),
+  username: Yup.string().required("Username cannot be empty."),
 });
 export const signupFormSchema = Yup.object().shape({
-  fullname: Yup.string().required("Fullname cannot be empty."),
+  username: Yup.string().required("Username cannot be empty."),
   email: Yup.string()
     .email("Invalid email address")
     .required("Email cannot be empty."),

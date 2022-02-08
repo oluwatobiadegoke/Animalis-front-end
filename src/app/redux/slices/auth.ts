@@ -1,15 +1,57 @@
-import {
-  createSlice,
-  // createAsyncThunk
-} from "@reduxjs/toolkit";
-// import axios from "axios";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 interface AuthState {
-  isAuthenticated: boolean;
+  isRegistered: boolean;
+  loading: boolean;
+  isLoggedIn: boolean;
+  user: {
+    userId: string;
+    username: string;
+  } | null;
 }
 
+interface UserData {
+  username: string;
+  email: string;
+  password: string;
+  cpassword: string;
+}
+
+const baseUrl: string = "http://localhost:8000/api/v1/";
+
+export const registerUser = createAsyncThunk(
+  "auth/register",
+  async (userData: UserData, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${baseUrl}auth/register`, userData);
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(err);
+    }
+  }
+);
+
+export const loginUser = createAsyncThunk(
+  "auth/login",
+  async (
+    userData: Omit<UserData, "email" | "cpassword">,
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axios.post(`${baseUrl}auth/login`, userData);
+      return response.data;
+    } catch (err: any) {
+      return rejectWithValue(err);
+    }
+  }
+);
+
 const initialState: AuthState = {
-  isAuthenticated: false,
+  isRegistered: false,
+  loading: false,
+  isLoggedIn: false,
+  user: null,
 };
 
 export const authSlice = createSlice({
@@ -17,8 +59,34 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     clearState: (state) => {
-      state.isAuthenticated = false;
+      state.isRegistered = false;
+      state.loading = false;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(registerUser.fulfilled, (state) => {
+      state.isRegistered = true;
+      state.loading = false;
+    });
+    builder.addCase(registerUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(registerUser.rejected, (state) => {
+      state.loading = false;
+      state.isRegistered = false;
+    });
+    builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+      state.user = payload;
+      state.isLoggedIn = true;
+      state.loading = false;
+    });
+    builder.addCase(loginUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(loginUser.rejected, (state) => {
+      state.loading = false;
+      state.isLoggedIn = false;
+    });
   },
 });
 export const { clearState } = authSlice.actions;
