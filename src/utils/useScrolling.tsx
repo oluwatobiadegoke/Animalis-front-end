@@ -4,10 +4,9 @@ const useScrolling = () => {
   const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    setTimeout(() => {
       setIsScrolling(false);
     }, 5000);
-    return clearTimeout(timeout);
   }, [isScrolling]);
 
   useEffect(() => {

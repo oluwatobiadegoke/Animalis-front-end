@@ -1,3 +1,7 @@
+import { Navigate } from "react-router-dom";
+
+// const { isLoggedIn } = useAppSelector(state => state.auth);
+
 import About from "../pages/about";
 import Contact from "../pages/contact";
 import Home from "../pages/home";
@@ -25,7 +29,7 @@ export const routes = {
   profile: "/profile",
 };
 
-export const router: RouterProps[] = [
+export const router = (isLoggedIn: boolean): RouterProps[] => [
   {
     path: routes.home,
     element: <Home />,
@@ -52,11 +56,11 @@ export const router: RouterProps[] = [
   },
   {
     path: routes.posts,
-    element: <Posts />,
+    element: isLoggedIn ? <Posts /> : <Navigate to={routes.login} />,
   },
   {
     path: routes.post,
-    element: <Post />,
+    element: isLoggedIn ? <Post /> : <Navigate to={routes.login} />,
     children: [
       {
         path: ":postId",
@@ -70,7 +74,7 @@ export const router: RouterProps[] = [
   },
   {
     path: routes.profile,
-    element: <Profile />,
+    element: isLoggedIn ? <Profile /> : <Navigate to={routes.login} />,
     children: [
       {
         path: ":userId",

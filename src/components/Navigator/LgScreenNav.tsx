@@ -1,17 +1,15 @@
-import { useLocation } from "react-router-dom";
 import NavgatorLinks from "./NavgatorLinks";
 import { routes } from "../../utils/routes";
 import Button from "../Button";
 import AuthLgScNav from "./AuthLgScNav";
+import { useAppSelector } from "../../app/redux/hooks";
 
 const LgScreenNav = () => {
-  const location = useLocation();
-
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   return (
     <div className="flex-1 hidden md:flex items-center">
       <NavgatorLinks />
-      {location.pathname.includes("post") ||
-      location.pathname.includes("profile") ? (
+      {isLoggedIn ? (
         <AuthLgScNav />
       ) : (
         <div className="flex-1 flex items-center justify-end gap-4">

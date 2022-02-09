@@ -47,6 +47,15 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logOutUser = createAsyncThunk("auth/logout", async () => {
+  try {
+    const response = await axios.post(`${baseUrl}auth/logout`);
+    return response.data;
+  } catch (err: any) {
+    return err;
+  }
+});
+
 const initialState: AuthState = {
   isRegistered: false,
   loading: false,
@@ -86,6 +95,16 @@ export const authSlice = createSlice({
     builder.addCase(loginUser.rejected, (state) => {
       state.loading = false;
       state.isLoggedIn = false;
+    });
+    builder.addCase(logOutUser.fulfilled, (state) => {
+      state.isLoggedIn = false;
+      state.loading = false;
+    });
+    builder.addCase(logOutUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(logOutUser.rejected, (state) => {
+      state.loading = false;
     });
   },
 });

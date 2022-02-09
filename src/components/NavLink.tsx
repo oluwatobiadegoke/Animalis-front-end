@@ -7,6 +7,7 @@ import {
 
 import { router } from "../utils/routes";
 import { LinkProps } from "../interfaces";
+import { useAppSelector } from "../app/redux/hooks";
 
 const NavLink = ({
   to,
@@ -16,12 +17,13 @@ const NavLink = ({
   activeClassName,
   inactiveClassName,
 }: LinkProps) => {
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const location = useLocation();
   const resolvedPath = useResolvedPath(to);
 
   let isActive;
 
-  const match = matchRoutes(router, location);
+  const match = matchRoutes(router(isLoggedIn), location);
 
   if (exact) {
     isActive = location.pathname === resolvedPath.pathname;
