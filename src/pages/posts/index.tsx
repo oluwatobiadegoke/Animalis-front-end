@@ -1,15 +1,13 @@
 import Layout from "../../components/Layout";
 import Modal from "../../utils/Modal";
-import { DemoPosts } from "../../utils/DemoPosts";
 import AllPosts from "../../components/Posts/Posts";
 import { usePosts } from "../../utils/swrHooks";
 
 const Posts = () => {
   const { posts, isLoading, isError } = usePosts();
-  console.log(posts);
 
   if (isLoading) return <p>Loading...</p>;
-  // if(isError) return <p>Error...</p>;
+  if (isError) return <p>Error...</p>;
 
   return (
     <Layout>
