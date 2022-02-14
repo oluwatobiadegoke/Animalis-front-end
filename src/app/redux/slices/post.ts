@@ -18,6 +18,11 @@ interface Post {
   media: Media[];
 }
 
+interface Like {
+  userId: string;
+  postId: string;
+}
+
 const initialState: PostSliceState = {
   loading: false,
   uploaded: false,
@@ -39,6 +44,30 @@ export const uploadPost = createAsyncThunk(
     try {
       authHeader(Cookies.get("token")!);
       const response = await axios.post(`${baseUrl}posts`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    } catch (err: any) {
+      console.log(err);
+      return rejectWithValue(err);
+    }
+  }
+);
+
+export const likePost = createAsyncThunk(
+  "post/like",
+  async (likeData: Like, { rejectWithValue }) => {
+    const { userId, postId } = likeData;
+    const formData = {
+      userId,
+      postId,
+    };
+    try {
+      authHeader(Cookies.get("token")!);
+      const response = await axios.post(`${baseUrl}posts/like`, formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
@@ -74,6 +103,15 @@ export const postSlice = createSlice({
       state.loading = false;
       state.uploaded = false;
       state.error = "Something went wrong";
+    });
+    builder.addCase(likePost.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(likePost.fulfilled, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(likePost.rejected, (state) => {
+      state.loading = false;
     });
   },
 });

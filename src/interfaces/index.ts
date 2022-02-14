@@ -43,6 +43,10 @@ export type Comments = {
   date: Date;
 };
 
+interface Likes {
+  userId: string;
+}
+
 export interface PostProps {
   _id: string;
   userId: string;
@@ -50,7 +54,7 @@ export interface PostProps {
   userAvatar: string;
   words: string;
   media: Media[];
-  likes: string[];
+  likes: Likes[];
   comments: Comments[];
   createdAt: Date;
   updatedAt: Date;

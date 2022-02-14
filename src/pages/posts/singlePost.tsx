@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Post from "../../components/Posts/Post";
-import { PostProps } from "../../interfaces";
-import { DemoPosts } from "../../utils/DemoPosts";
 import { IProps } from "../../components/Posts/Post";
 import Modal from "../../utils/Modal";
 import Comment from "../../components/Posts/Comment";
@@ -19,7 +16,7 @@ const SinglePost = () => {
   };
 
   if (isLoading) return <p>Loading...</p>;
-  // if(isError) return <p>Error...</p>;
+  if (isError) return <p>Error...</p>;
 
   return (
     <>

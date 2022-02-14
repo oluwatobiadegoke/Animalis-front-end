@@ -22,7 +22,7 @@ export const DemoPosts: PostProps[] = [
         type: "image",
       },
     ],
-    likes: ["1", "", ""],
+    likes: [],
     comments: [
       {
         userId: "Tolulope",
@@ -75,7 +75,7 @@ export const DemoPosts: PostProps[] = [
         type: "image",
       },
     ],
-    likes: ["idliee49483k389393", "", ""],
+    likes: [],
     comments: [
       {
         userId: "Tolulope",
@@ -104,7 +104,7 @@ export const DemoPosts: PostProps[] = [
         type: "image",
       },
     ],
-    likes: ["", "", ""],
+    likes: [],
     comments: [
       {
         userId: "funsho",
