@@ -81,6 +81,30 @@ export const likePost = createAsyncThunk(
   }
 );
 
+export const unlikePost = createAsyncThunk(
+  "post/unlike",
+  async (likeData: Like, { rejectWithValue }) => {
+    const { userId, postId } = likeData;
+    const formData = {
+      userId,
+      postId,
+    };
+    try {
+      authHeader(Cookies.get("token")!);
+      const response = await axios.post(`${baseUrl}posts/unlike`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    } catch (err: any) {
+      console.log(err);
+      return rejectWithValue(err);
+    }
+  }
+);
+
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -111,6 +135,15 @@ export const postSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(likePost.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(unlikePost.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(unlikePost.fulfilled, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(unlikePost.rejected, (state) => {
       state.loading = false;
     });
   },

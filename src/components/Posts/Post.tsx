@@ -6,7 +6,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { PostProps } from "../../interfaces";
 import { routes } from "../../utils/routes";
 import PostImages from "./PostImages";
-import { likePost } from "../../app/redux/slices/post";
+import { likePost, unlikePost } from "../../app/redux/slices/post";
 import { useAppDispatch, useAppSelector } from "../../app/redux/hooks";
 // import { usePosts } from "../../utils/swrHooks";
 
@@ -73,7 +73,17 @@ const Post: React.FC<PostPageProps> = ({ postPage: { post } }) => {
 
           <div className="flex items-center gap-3">
             {post.likes.find((like) => like.userId === user?.userId) ? (
-              <AiFillHeart className="text-red-500 text-xl" />
+              <AiFillHeart
+                className="text-red-500 text-xl"
+                onClick={async () => {
+                  dispatch(
+                    unlikePost({
+                      userId: user?.userId!,
+                      postId: post._id,
+                    })
+                  );
+                }}
+              />
             ) : (
               <AiOutlineHeart
                 className="text-textWhite-500 text-xl"
