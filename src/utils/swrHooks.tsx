@@ -48,7 +48,6 @@ export const usePost = (postId: string) => {
       },
     }
   );
-  console.log(data);
   return {
     post: data?.post as PostProps,
     isLoading: !error && !data,

@@ -38,7 +38,7 @@ export type Media = {
 export type Comments = {
   userId: string;
   username: string;
-  userAvatar: string;
+  _id: string;
   text: string;
   date: Date;
 };

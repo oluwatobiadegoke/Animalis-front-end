@@ -7,6 +7,7 @@ import { authHeader } from "../../../utils/authHeader";
 
 interface PostSliceState {
   loading: boolean;
+  removeLoading: boolean;
   uploaded: boolean;
   error: string | null;
 }
@@ -23,8 +24,14 @@ interface Like {
   postId: string;
 }
 
+interface Comment extends Like {
+  username: string;
+  text: string;
+}
+
 const initialState: PostSliceState = {
   loading: false,
+  removeLoading: false,
   uploaded: false,
   error: null,
 };
@@ -105,6 +112,61 @@ export const unlikePost = createAsyncThunk(
   }
 );
 
+export const addComment = createAsyncThunk(
+  "post/addComment",
+  async (commentData: Comment, { rejectWithValue }) => {
+    const { userId, username, postId, text } = commentData;
+    const formData = {
+      userId,
+      username,
+      postId,
+      text,
+    };
+    try {
+      authHeader(Cookies.get("token")!);
+      const response = await axios.post(`${baseUrl}posts/comment`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
+    } catch (err: any) {
+      console.log(err);
+      return rejectWithValue(err);
+    }
+  }
+);
+
+interface RemoveComment {
+  postId: string;
+  commentId: string;
+}
+
+export const removeComment = createAsyncThunk(
+  "post/removeComment",
+  async (commentData: RemoveComment, { rejectWithValue }) => {
+    const { postId, commentId } = commentData;
+    try {
+      authHeader(Cookies.get("token")!);
+      const response = await axios.patch(
+        `${baseUrl}posts/comment/${postId}`,
+        { commentId },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response.data;
+    } catch (err: any) {
+      console.log(err);
+      return rejectWithValue(err);
+    }
+  }
+);
+
 export const postSlice = createSlice({
   name: "post",
   initialState,
@@ -145,6 +207,28 @@ export const postSlice = createSlice({
     });
     builder.addCase(unlikePost.rejected, (state) => {
       state.loading = false;
+    });
+    builder.addCase(addComment.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(addComment.fulfilled, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(addComment.rejected, (state) => {
+      state.loading = false;
+      state.error = "Could not add comment.";
+    });
+    builder.addCase(removeComment.pending, (state) => {
+      state.removeLoading = true;
+      state.error = null;
+    });
+    builder.addCase(removeComment.fulfilled, (state) => {
+      state.removeLoading = false;
+    });
+    builder.addCase(removeComment.rejected, (state) => {
+      state.removeLoading = false;
+      state.error = "Could not add comment.";
     });
   },
 });
