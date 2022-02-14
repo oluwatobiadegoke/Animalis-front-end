@@ -16,6 +16,7 @@ import logger from "redux-logger";
 
 import { authSlice } from "./slices/auth";
 import { modalSlice } from "./slices/modal";
+import { postSlice } from "./slices/post";
 
 const persistConfig = {
   key: "root",
@@ -26,6 +27,7 @@ const persistConfig = {
 const combinedReducers = combineReducers({
   auth: authSlice.reducer,
   modal: modalSlice.reducer,
+  post: postSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);
@@ -35,7 +37,16 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+          "post/upload",
+        ],
+        ignoredActionPaths: ["payload"],
       },
     }).concat(logger),
 });

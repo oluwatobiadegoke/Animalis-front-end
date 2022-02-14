@@ -40,6 +40,8 @@ export const loginUser = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(`${baseUrl}auth/login`, userData);
+      document.cookie = `token=${response.data.token}`;
+      // localStorage.setItem("token", response.data.token);
       return response.data;
     } catch (err: any) {
       return rejectWithValue(err);
@@ -47,13 +49,8 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const logOutUser = createAsyncThunk("auth/logout", async () => {
-  try {
-    const response = await axios.post(`${baseUrl}auth/logout`);
-    return response.data;
-  } catch (err: any) {
-    return err;
-  }
+export const logOutUser = createAsyncThunk("auth/logout", () => {
+  localStorage.removeItem("token");
 });
 
 const initialState: AuthState = {
@@ -85,7 +82,7 @@ export const authSlice = createSlice({
       state.isRegistered = false;
     });
     builder.addCase(loginUser.fulfilled, (state, { payload }) => {
-      state.user = payload;
+      state.user = payload.user;
       state.isLoggedIn = true;
       state.loading = false;
     });

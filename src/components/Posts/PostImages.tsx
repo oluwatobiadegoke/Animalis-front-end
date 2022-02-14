@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 import { Media } from "../../interfaces";
 import { useAppDispatch } from "../../app/redux/hooks";
 import { openModal } from "../../app/redux/slices/modal";
@@ -8,9 +10,13 @@ interface Props {
 
 const PostImages: React.FC<Props> = ({ images }) => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
   return (
     <div
-      className={`absolute right-3 left-3 bottom-[41px] max-w-full h-64 md:h-72 mb-2 bg-transparent rounded-xl overflow-hidden grid gap-1 ${
+      className={`${
+        !location.pathname.includes("upload") &&
+        "absolute right-3 left-3 bottom-[41px] "
+      } max-w-full h-64 md:h-72 mb-2 bg-transparent rounded-xl overflow-hidden grid gap-1 ${
         images.length < 2 ? "grid-cols-1 " : " grid-cols-2"
       }`}
     >
