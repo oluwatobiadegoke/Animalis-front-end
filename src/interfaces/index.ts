@@ -44,7 +44,7 @@ export type Comments = {
 };
 
 export interface PostProps {
-  postId: string;
+  _id: string;
   userId: string;
   username: string;
   userAvatar: string;

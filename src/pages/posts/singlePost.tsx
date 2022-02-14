@@ -8,16 +8,18 @@ import { IProps } from "../../components/Posts/Post";
 import Modal from "../../utils/Modal";
 import Comment from "../../components/Posts/Comment";
 import CommentInput from "../../components/Posts/CommentInput";
+import { usePost } from "../../utils/swrHooks";
 
 const SinglePost = () => {
   const { postId } = useParams();
-  const [post] = useState<PostProps>(
-    DemoPosts.find((post) => post.postId === postId)!
-  );
+  const { post, isLoading, isError } = usePost(postId!);
 
   const PostProps: IProps = {
     post,
   };
+
+  if (isLoading) return <p>Loading...</p>;
+  // if(isError) return <p>Error...</p>;
 
   return (
     <>

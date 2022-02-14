@@ -13,7 +13,7 @@ const Posts = ({ DemoPosts }: Props) => {
         const PostProps: IProps = {
           post,
         };
-        return <Post key={post.postId} postPage={PostProps} />;
+        return <Post key={post._id} postPage={PostProps} />;
       })}
     </div>
   );

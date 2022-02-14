@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import { Media } from "../../../interfaces";
 import { authHeader } from "../../../utils/authHeader";
-import Cookies from "js-cookie";
 
 interface PostSliceState {
   loading: boolean;

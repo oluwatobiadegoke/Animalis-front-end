@@ -23,20 +23,28 @@ const Post: React.FC<PostPageProps> = ({ postPage: { post } }) => {
     <div className="relative block text-sm md:text-base pt-3 px-3 rounded-lg hover:bg-[rgb(23,49,77)] transition-all duration-500">
       {/* CLICKING THE IMAGE LEADS TO A PROFILE PAGE. IT IS MADE ABSOLUTE JUST SO THAT THE LINK APPLIES ONLY TO WHEN THE IMAGE ALONE IS CLICKED */}
       <Link to={`${routes.profile}/${userId}`}>
-        <img
-          className="absolute top-3 left-3 inline object-cover w-16 h-16 mr-2 rounded-full"
-          src={
-            !!Number(location.pathname.slice(-1))
-              ? `.${post.userAvatar}`
-              : post.userAvatar
-          }
-          alt={post.username}
-        />
+        {post.userAvatar ? (
+          <img
+            className="absolute top-3 left-3 inline object-cover w-16 h-16 mr-2 rounded-full"
+            src={
+              !!Number(location.pathname.slice(-1))
+                ? `.${post.userAvatar}`
+                : post.userAvatar
+            }
+            alt={post.username}
+          />
+        ) : (
+          <div className="absolute top-3 left-3 w-16 h-16 rounded-full flex items-center justify-center bg-teal-500 ">
+            <span className="text-2xl text-textWhite-500">
+              {post.username[0]}
+            </span>
+          </div>
+        )}
       </Link>
       {/* CLICKING ANY OF THE IMAGES DISPLAYS A POP UP. THIS IS ALSO SEPARATED FROM THE GROUP SO THAT CLICKING IT WOULD NOT INITIATE THE LINK */}
       <PostImages images={post.media} />
       {/* ////////////////////////////// */}
-      <Link to={`/post/${post.postId}`}>
+      <Link to={`/post/${post._id}`}>
         <div className="flex gap-2 mb-2 h-16">
           <div className="ml-[72px]">
             <p>{post.username}</p>

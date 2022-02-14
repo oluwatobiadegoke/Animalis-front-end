@@ -3,7 +3,7 @@ import { PostProps } from "../interfaces";
 export const DemoPosts: PostProps[] = [
   {
     userId: "1",
-    postId: "1",
+    _id: "1",
     username: "Oluwatobi",
     userAvatar: "./Assets/tobi.jpg",
     words:
@@ -65,7 +65,7 @@ export const DemoPosts: PostProps[] = [
   },
   {
     userId: "2",
-    postId: "2",
+    _id: "2",
     username: "Sam Scott",
     userAvatar: "./Assets/tobi.jpg",
     words: "Check out my dogs y'all.",
@@ -90,7 +90,7 @@ export const DemoPosts: PostProps[] = [
   },
   {
     userId: "3",
-    postId: "3",
+    _id: "3",
     username: "Tosin",
     userAvatar: "./Assets/tobi.jpg",
     words: "Check out my dogs y'all.",
