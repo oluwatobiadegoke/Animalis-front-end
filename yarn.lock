@@ -7194,6 +7194,11 @@ react-scripts@5.0.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-web-share@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-web-share/-/react-web-share-1.1.1.tgz#3f72fc05cd6ed5a23c901126db01468517112e3d"
+  integrity sha512-n2ySY8fU/VKdcOANBw7FgW1J22pVXfn7WmNXMnk7dVpsiixOl6r/SZVYGPvzwoDyM+CAgywF2e6CYsSFV0o1nA==
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
