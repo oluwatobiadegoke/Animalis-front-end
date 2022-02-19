@@ -50,7 +50,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const logOutUser = createAsyncThunk("auth/logout", () => {
-  localStorage.removeItem("token");
+  document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 });
 
 const initialState: AuthState = {
@@ -96,6 +96,7 @@ export const authSlice = createSlice({
     builder.addCase(logOutUser.fulfilled, (state) => {
       state.isLoggedIn = false;
       state.loading = false;
+      state.user = null;
     });
     builder.addCase(logOutUser.pending, (state) => {
       state.loading = true;

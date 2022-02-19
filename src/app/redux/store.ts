@@ -17,6 +17,7 @@ import logger from "redux-logger";
 import { authSlice } from "./slices/auth";
 import { modalSlice } from "./slices/modal";
 import { postSlice } from "./slices/post";
+import { userSlice } from "./slices/user";
 
 const persistConfig = {
   key: "root",
@@ -28,6 +29,7 @@ const combinedReducers = combineReducers({
   auth: authSlice.reducer,
   modal: modalSlice.reducer,
   post: postSlice.reducer,
+  user: userSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);

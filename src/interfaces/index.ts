@@ -61,9 +61,28 @@ export interface PostProps {
 }
 
 export interface User {
-  userId: string;
+  _id: string;
   username: string;
   email: string;
   avatar: string;
   bio: string;
 }
+
+// _id
+// :
+// 62018fdae6cef03bd0c1b6d8
+// username
+// :
+// "Oluwatobee"
+// email
+// :
+// "tobi@gmail.com"
+// password
+// :
+// "$2a$10$6VRYK4dvPtfLfGUNvRSoLOwZNOhR8t0KFDCj4XWj1X3sXUAg3A9oO"
+// avatar
+// :
+// ""
+// bio
+// :
+// ""

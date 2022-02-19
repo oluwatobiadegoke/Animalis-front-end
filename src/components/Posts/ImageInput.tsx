@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 
 import { Media } from "../../interfaces";
@@ -15,6 +16,7 @@ interface Props {
 const ImageInput = ({ name, images, setImages, bg, position }: Props) => {
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  const [err, setErr] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -27,27 +29,36 @@ const ImageInput = ({ name, images, setImages, bg, position }: Props) => {
     const formData = new FormData();
     formData.append("file", files[0]);
     formData.append("upload_preset", "vtwjykk9");
+    const token = Cookies.get("token");
+    delete axios.defaults.headers.common["Authorization"];
     try {
       const { data } = await axios.post(
         "https://api.cloudinary.com/v1_1/theoluwatobi/image/upload",
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       const image: Media = {
         link: data.secure_url,
         type: "image",
       };
       setImages([...images, image]);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       setLoading(false);
       setMsg("Done");
     } catch (error) {
-      console.log(error);
+      setErr(true);
+      setMsg("Error uploading image");
     }
   };
 
   return (
     <label
       htmlFor={name}
-      className=" text-sm rounded-lg cursor-pointer shadow mx-auto"
+      className=" text-sm rounded-lg cursor-pointer shadow mx-auto mb-4"
     >
       <div className={`editImg group relative h-16 w-16 rounded-lg ${bg}`}>
         {images.length > 0 ? (
@@ -73,7 +84,11 @@ const ImageInput = ({ name, images, setImages, bg, position }: Props) => {
         accept="image/png, image/jpeg"
         onChange={(e) => handleImageUpload(e.target.files)}
       />
-      {(loading || msg) && <small>{loading ? "loading" : `${msg}`}</small>}
+      {(loading || msg) && (
+        <small className={`${err && "text-red-500"} mg-2`}>
+          {loading ? "loading" : `${msg}`}
+        </small>
+      )}
     </label>
   );
 };
