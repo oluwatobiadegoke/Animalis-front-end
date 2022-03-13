@@ -8,9 +8,12 @@ import { useUser } from "../../utils/swrHooks";
 import { useAppSelector } from "../../app/redux/hooks";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
-import { DemoPosts } from "../../utils/DemoPosts";
 import Modal from "../../utils/Modal";
 import { routes } from "../../utils/routes";
+import {
+  useIndividualPosts,
+  useIndividualMediaPosts,
+} from "../../utils/swrHooks";
 
 const Posts = lazy(() => import("../../components/Posts/Posts"));
 
@@ -18,9 +21,10 @@ const UserProfile = () => {
   const { userId } = useParams();
   const { user } = useUser(userId!);
   const { user: authUser } = useAppSelector((state) => state.auth);
+  const { posts } = useIndividualPosts(userId!);
+  const { media } = useIndividualMediaPosts(userId!);
 
   const [tabs] = useState<string[]>(["Posts", "Media"]);
-
   return (
     <>
       {user && (
@@ -101,12 +105,12 @@ const UserProfile = () => {
             <Tab.Panels>
               <Tab.Panel>
                 <Suspense fallback={null}>
-                  <Posts DemoPosts={DemoPosts} />
+                  <Posts DemoPosts={posts} />
                 </Suspense>
               </Tab.Panel>
               <Tab.Panel>
                 <Suspense fallback={null}>
-                  <Posts DemoPosts={DemoPosts} />
+                  <Posts DemoPosts={media} />
                 </Suspense>
               </Tab.Panel>
             </Tab.Panels>

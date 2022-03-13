@@ -4,10 +4,11 @@ import { AiOutlinePoweroff } from "react-icons/ai";
 import { HiPencilAlt } from "react-icons/hi";
 import { routes } from "../../utils/routes";
 import { logOutUser } from "../../app/redux/slices/auth";
-import { useAppDispatch } from "../../app/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/redux/hooks";
 
 const AuthLgScNav = () => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
   return (
     <nav className="flex items-center justify-end gap-8 text-lg text-textWhite-500 flex-1">
       <Link
@@ -24,7 +25,10 @@ const AuthLgScNav = () => {
       <Link to={routes.posts} className="hover:text-[#a1573a] transition-all">
         <FaListAlt />
       </Link>
-      <Link to={routes.profile} className="hover:text-teal-500 transition-all">
+      <Link
+        to={`${routes.profile}/${user?.userId}`}
+        className="hover:text-teal-500 transition-all"
+      >
         <FaUserAlt />
       </Link>
       <button

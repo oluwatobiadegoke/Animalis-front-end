@@ -55,6 +55,58 @@ export const usePost = (postId: string) => {
   };
 };
 
+export const useIndividualPosts = (userId: string) => {
+  const fetchPostsById = async (url: string) => {
+    authHeader(Cookies.get("token")!);
+    const response = await axios.get(url);
+    return response.data;
+  };
+
+  const { data, error } = useSWR(
+    [`${baseUrl}/posts/user/${userId}`, userId],
+    fetchPostsById,
+    {
+      refreshInterval: 1000,
+      onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+        if (error.status === 404 || error.status === 400) return;
+        if (retryCount >= 10) return;
+        setTimeout(() => revalidate({ retryCount }), 5000);
+      },
+    }
+  );
+  return {
+    posts: data?.posts as PostProps[],
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+export const useIndividualMediaPosts = (userId: string) => {
+  const fetchPostsById = async (url: string) => {
+    authHeader(Cookies.get("token")!);
+    const response = await axios.get(url);
+    return response.data;
+  };
+
+  const { data, error } = useSWR(
+    [`${baseUrl}/posts/usermedia/${userId}`, userId],
+    fetchPostsById,
+    {
+      refreshInterval: 1000,
+      onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+        if (error.status === 404 || error.status === 400) return;
+        if (retryCount >= 10) return;
+        setTimeout(() => revalidate({ retryCount }), 5000);
+      },
+    }
+  );
+  return {
+    media: data?.posts as PostProps[],
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
 export const useUser = (userId: string) => {
   const fetchById = async (url: string) => {
     authHeader(Cookies.get("token")!);

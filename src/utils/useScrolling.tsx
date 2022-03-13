@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useScrolling = () => {
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {

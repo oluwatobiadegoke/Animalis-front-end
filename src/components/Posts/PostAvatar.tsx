@@ -15,7 +15,7 @@ const PostAvatar: React.FC<PostAvatarProps> = ({ post }) => {
           className="absolute top-3 left-3 inline object-cover w-16 h-16 mr-2 rounded-full"
           src={
             !!Number(location.pathname.slice(-1))
-              ? `.${post.userAvatar}`
+              ? `${post.userAvatar}`
               : post.userAvatar
           }
           alt={post.username}

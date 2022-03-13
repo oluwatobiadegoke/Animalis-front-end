@@ -87,7 +87,6 @@ const EditProfile = () => {
     }
   };
 
-  console.log(user);
   return (
     <div>
       {user && (
