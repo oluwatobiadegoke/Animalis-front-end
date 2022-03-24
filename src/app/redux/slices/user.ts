@@ -24,7 +24,7 @@ const UserState: UserUpdateState = {
   error: null,
 };
 
-const baseUrl: string = "http://localhost:8000/api/v1/";
+const baseUrl: string = "https://animalkgdm.herokuapp.com/api/v1/";
 
 export const updateUser = createAsyncThunk(
   "auth/login",

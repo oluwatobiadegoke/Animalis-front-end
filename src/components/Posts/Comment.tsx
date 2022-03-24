@@ -17,7 +17,7 @@ const Comment: React.FC<Props> = ({ comment: { _id, username, text } }) => {
   const { removeLoading, error } = useAppSelector((state) => state.post);
   const dispatch = useAppDispatch();
   const { mutate } = useSWRConfig();
-  const baseUrl = "http://localhost:8000/api/v1";
+  const baseUrl = "https://animalkgdm.herokuapp.com/api/v1";
   return (
     <div className="text-sm md:text-base shadow border-t border-t-textGrey-800 flex items-center gap-2 my-2 py-1  px-3 mx-3">
       <div className="w-12 h-12 rounded-full flex items-center justify-center bg-teal-500 mr-2">

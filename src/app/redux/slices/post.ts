@@ -36,7 +36,7 @@ const initialState: PostSliceState = {
   error: null,
 };
 
-const baseUrl: string = "http://localhost:8000/api/v1/";
+const baseUrl: string = "https://animalkgdm.herokuapp.com/api/v1/";
 
 export const uploadPost = createAsyncThunk(
   "post/upload",

@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { authHeader } from "../utils/authHeader";
 import { PostProps, User } from "../interfaces";
 
-const baseUrl = "http://localhost:8000/api/v1";
+const baseUrl = "https://animalkgdm.herokuapp.com/api/v1";
 
 export const usePosts = () => {
   const fetcher = async (url: string) => {

@@ -18,7 +18,7 @@ interface UserData {
   cpassword: string;
 }
 
-const baseUrl: string = "http://localhost:8000/api/v1/";
+const baseUrl: string = "https://animalkgdm.herokuapp.com/api/v1/";
 
 export const registerUser = createAsyncThunk(
   "auth/register",
