@@ -20,7 +20,7 @@ const BottomNav = () => {
       <div className="flex items-center justify-evenly h-10 gap-8 text-textGrey-500 bg-[rgb(15,23,42)] bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-40 w-1/2 mx-auto rounded-full">
         <Link
           to={`${routes.post}/upload`}
-          className=" text-xl hover:text-[#f2c45f] transition-all duration-50"
+          className=" text-xl hover:text-[#f2c45f] transition-all duration-500"
         >
           <HiPencilAlt />
         </Link>

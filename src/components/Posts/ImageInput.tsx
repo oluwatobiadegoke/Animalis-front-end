@@ -85,7 +85,7 @@ const ImageInput = ({ name, images, setImages, bg, position }: Props) => {
         onChange={(e) => handleImageUpload(e.target.files)}
       />
       {(loading || msg) && (
-        <small className={`${err && "text-red-500"} mg-2`}>
+        <small className={`${err && "text-red-500"} mt-2`}>
           {loading ? "loading" : `${msg}`}
         </small>
       )}
